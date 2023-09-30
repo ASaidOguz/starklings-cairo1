@@ -2,12 +2,16 @@
 // Address all the TODOs to make the tests pass!
 // Execute `starklings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+
 
 use debug::PrintTrait;
 
 #[derive(Drop, Copy)]
 enum Message { // TODO: implement the message variant types based on their usage below
+     Echo:felt252,
+     ChangeColor:(u8,u8,u8),
+     Move:Point,
+     Quit,
 }
 
 #[derive(Drop, Copy)]
@@ -52,7 +56,35 @@ impl StateImpl of StateTrait {
     fn process(
         ref self: State, message: Message
     ) { // TODO: create a match expression to process the different message variants
+ match message{
+               Message::Echo(felt_value) => {
+                // Handle the Echo message
+                // You can use felt_value here as needed
+                // For example, you can print it
+                felt_value.print();
+            },
+            Message::ChangeColor(new_color) => {
+                // Handle the ChangeColor message
+                // new_color is a tuple (u8, u8, u8)
+                // You can use new_color here to change the state's color
+                let (r, g, b) = new_color;
+                self.change_color((r, g, b));
+            },
+            Message::Move(new_position) => {
+                // Handle the Move message
+                // new_position is a tuple (u8, u8)
+                // You can use new_position here to change the state's position
+                
+                self.move_position(Point { x:new_position.x, y:new_position.y });
+            },
+                        Message::Quit => {
+                // Handle the Quit message
+                // You can set the quit flag to true
+                self.quit();
+            }
+ }
     }
+    
 }
 
 

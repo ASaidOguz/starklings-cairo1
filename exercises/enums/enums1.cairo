@@ -1,11 +1,20 @@
 // enums1.cairo
 // No hints this time! ;)
 
-// I AM NOT DONE
+
+
+//Enums, short for "enumerations," are a way to define a custom data type that consists 
+//of a fixed set of named values, called variants. Enums are useful for representing a 
+//collection of related values where each value is distinct and has a specific meaning.
 
 use debug::print;
 use debug::PrintTrait;
+
 enum Message { // TODO: define a few types of messages as used below
+    Quit,
+    Echo,
+    Move,
+    ChangeColor,
 }
 
 fn main() {
